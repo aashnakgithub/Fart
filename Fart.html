@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farty Background Fun</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('https://i.imgur.com/Q7UicJv.jpg') center/cover; /* Replace with the provided image URL */
+    }
+
+    .content {
+      text-align: center;
+      color: white;
+      padding: 20px;
+      background-color: rgba(0, 0, 255, 0.5); /* Blue semi-transparent background */
+      border-radius: 10px;
+    }
+
+    h1 {
+      font-size: 2em;
+    }
+
+    p {
+      font-size: 1.2em;
+    }
+
+    label, select, input, button {
+      display: block;
+      margin: 10px auto;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>Welcome to Farty Background Fun!</h1>
+    <p>Feel the vibes with our amazing farty background.</p>
+
+    <label for="delaySelect">Choose Delay (seconds):</label>
+    <select id="delaySelect">
+      <option value="0">No Delay</option>
+      <option value="5">5 secs</option>
+      <option value="10">10 secs</option>
+      <option value="15">15 secs</option>
+      <option value="30">30 secs</option>
+      <option value="60">1 minute</option>
+      <option value="120">2 minutes</option>
+    </select>
+
+    <label for="durationSelect">Choose Duration (seconds):</label>
+    <select id="durationSelect">
+      <option value="5">5 secs</option>
+      <option value="10">10 secs</option>
+      <option value="15">15 secs</option>
+      <option value="30">30 secs</option>
+      <option value="60">1 minute</option>
+    </select>
+
+    <label for="fartSelect">Select a Fart Sound:</label>
+    <select id="fartSelect">
+      <option value="wet-fart-6139.mp3">Wet Fart</option>
+      <option value="vegan-fart-voice-003-11981.mp3">Vegan Fart</option>
+      <option value="bad-chili-fartwav-14462.mp3">Bad Chili Fart</option>
+      <option value="fart-sound-effect-16-11093.mp3">Fart Sound Effect</option>
+      <option value="fart-noises-83359.mp3">Fart Noises</option>
+    </select>
+
+    <audio id="fartAudio" src=""></audio>
+
+    <button onclick="playFart()">Play Fart Sound</button>
+  </div>
+
+  <script>
+    function playFart() {
+      const delaySelect = document.getElementById("delaySelect");
+      const durationSelect = document.getElementById("durationSelect");
+      const fartSelect = document.getElementById("fartSelect");
+      const fartAudio = document.getElementById("fartAudio");
+
+      const delay = delaySelect.value;
+      const duration = durationSelect.value;
+      const selectedFart = fartSelect.value;
+
+      if (delay !== null && duration && selectedFart) {
+        fartAudio.src = selectedFart;
+
+        setTimeout(() => {
+          fartAudio.play();
+
+          setInterval(() => {
+            fartAudio.play();
+          }, (duration * 1000) + 1000); // Play every 'duration' seconds with a 1-second delay
+        }, delay * 1000);
+      } else {
+        alert("Please choose delay, duration, and a fart sound.");
+      }
+    }
+  </script>
+</body>
+</html>
